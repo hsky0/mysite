@@ -17,4 +17,38 @@
 5. 运行服务器，测试创建项目是否成功  
    python3 manage.py runserver
 
-## 
+## 编写简单的页面
+
+1. 创建应用程序  
+   python3 manage.py startapp homepage      (homepage是我的应用程序的名称)
+
+2. 在mysite/setting.py文件中添加应用程序
+   ```python
+    INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+
+    # 我的应用程序
+    'homepage',
+    ]
+   ```
+
+3. 在mysite/urls.py文件中添加应用程序的URL
+   ```python
+    from django.contrib import admin
+    from django.urls import path, include
+
+    from homepage import urls as hp_url
+
+    urlpatterns = [
+        path('admin/', admin.site.urls),
+
+        #我的应用程序
+        path('', include(hp_url, 'homepage'), name='homepage'),
+    ]
+
+   ```
