@@ -13,7 +13,6 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 from pathlib import Path
 import dj_database_url
 import os
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -22,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-(n^5h^9bjlpp2@g)$=6a2c9!zjga1xwl7i*l3twt+u91z+k!px'
+SECRET_KEY = 'django-insecure-dkqm5z7_4p&5q+5ehbtdp-v@gi0z%w$h&q45oo$s%=%59$m966'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -40,8 +39,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # 我的应用程序
-    'homepage',
+
+    # 应用程序
+    'homepage.apps.HomepageConfig',
 ]
 
 MIDDLEWARE = [
@@ -53,7 +53,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    # 静态服务
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
@@ -90,13 +89,12 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # }
 
 DATABASES = {
-        'default': dj_database_url.config(
-            # Replace this value with your local database's connection string.
-            default='postgres://mysite:MGAcuZ47Nj8IChEXhGgr3qINogDFrxnW@dpg-cnuocbtjm4es73a0f1og-a/mysite_710d',
-            conn_max_age=600
-        )
-    }
-
+    'default': dj_database_url.config(
+        # Replace this value with your local database's connection string.
+        default='postgres://mysite:MGAcuZ47Nj8IChEXhGgr3qINogDFrxnW@dpg-cnuocbtjm4es73a0f1og-a.oregon-postgres.render.com/mysite_710d',
+        conn_max_age=600
+    )
+}
 # Password validation
 # https://docs.djangoproject.com/en/5.0/ref/settings/#auth-password-validators
 
@@ -134,15 +132,16 @@ USE_TZ = True
 STATIC_URL = 'static/'
 STATIC_ROOT = os.path.join(BASE_DIR,'static') 
 
+# This production code might break development mode, so we check whether we're in DEBUG mode
 if not DEBUG:
-        # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
-        STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-        # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
-        # and renames the files with unique names for each version to support long-term caching
-        STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
+    # Tell Django to copy static assets into a path called `staticfiles` (this is specific to Render)
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    # Enable the WhiteNoise storage backend, which compresses static files to reduce disk use
+    # and renames the files with unique names for each version to support long-term caching
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
+
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
