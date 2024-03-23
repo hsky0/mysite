@@ -52,3 +52,29 @@
     ]
 
    ```
+
+4. 定义主页面的URL，在homepage命令下创建一个名为urls.py的文件
+   ```python
+    from django.urls import path, include
+
+    from . import views
+
+    urlpatterns = [
+
+        path('homepage/', views.index, name='index'),
+    ]
+   ```
+
+5. 编写视图函数(homepage/views.py)
+   ```python
+    from django.shortcuts import render
+
+    # Create your views here.
+    def index(request):
+        return render(request, 'homepage/index.html')
+   ```  
+
+6. 编写模板，在homepage目录下创建templates文件夹，再在该文件夹下创建homepage文件夹，再在该文件夹下创建文件index.html
+   ```html
+
+   ```
