@@ -112,7 +112,8 @@
    ```
 - 这里default后的值应修改为直接创建的PostgreSQL数据库的URL链接
 - python3 -m gunicorn mysite.asgi:application -k uvicorn.workers.UvicornWorker (运行服务器)
-- 
+
+
 ## 建立静态服务
 1. 安装'whitenoise[brotli]'包
    pip install 'whitenoise[brotli]'
