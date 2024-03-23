@@ -23,5 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 
     #我的应用程序
-    path('', include(hp_url, 'homepage'), name='homepage'),
+    path('', include((hp_url, 'homepage'), namespace='homepage')),
 ]
