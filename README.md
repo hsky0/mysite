@@ -144,7 +144,7 @@
 
    ```
    - 记住，在STATIC_URL = '/static/'后一定要加上STATIC_ROOT = os.path.join(BASE_DIR,'static')，不然会报错
-   
+   - 最后，在setting.py文件中，ALLOWED_HOSTS = ['*']，该变量的括号里要加上*号
 ## 创建管理用户 
 
 1. 命令  
